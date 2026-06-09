@@ -4,6 +4,11 @@ Gabriel Ambrosio Saraiva
 (Adicionar demais integrantes)
 Descrição do Projeto
 
+
+link projeto wokwi : https://wokwi.com/projects/466323026260079617
+link youtube: https://github.com/gabrielambrosiosaraiva/GS26-IOT
+
+
 Este projeto foi desenvolvido para a disciplina Disruptive Architectures: IoT, IOB & Generative AI, com o objetivo de demonstrar a aplicação de Internet das Coisas (IoT) no monitoramento agrícola.
 
 A solução utiliza um ESP32 para coletar dados ambientais, calcular um índice de evaporação e auxiliar na tomada de decisão sobre a necessidade de irrigação do solo.
