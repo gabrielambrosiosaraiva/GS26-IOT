@@ -1,0 +1,455 @@
+[
+    {
+        "id": "78e69b2627a400f1",
+        "type": "tab",
+        "label": "FLUXO GS26",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "json_solo",
+        "type": "json",
+        "z": "78e69b2627a400f1",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "x": 390,
+        "y": 80,
+        "wires": [
+            [
+                "fn_solo"
+            ]
+        ]
+    },
+    {
+        "id": "fn_solo",
+        "type": "function",
+        "z": "78e69b2627a400f1",
+        "name": "Extrair Solo",
+        "func": "msg.payload = Number(msg.payload.solo);\nreturn msg;",
+        "outputs": 1,
+        "x": 570,
+        "y": 100,
+        "wires": [
+            [
+                "gauge_solo",
+                "chart_solo"
+            ]
+        ]
+    },
+    {
+        "id": "gauge_solo",
+        "type": "ui_gauge",
+        "z": "78e69b2627a400f1",
+        "name": "",
+        "group": "grp_leitura",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Umidade Solo",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "x": 800,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "chart_solo",
+        "type": "ui_chart",
+        "z": "78e69b2627a400f1",
+        "name": "",
+        "group": "grp_hist",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "label": "Historico Solo",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "100",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "json_clima",
+        "type": "json",
+        "z": "78e69b2627a400f1",
+        "property": "payload",
+        "action": "obj",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "fn_clima"
+            ]
+        ]
+    },
+    {
+        "id": "fn_clima",
+        "type": "function",
+        "z": "78e69b2627a400f1",
+        "name": "Extrair Temp",
+        "func": "msg.payload = Number(msg.payload.temp_topo);\nreturn msg;",
+        "outputs": 1,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "gauge_temp",
+                "chart_temp"
+            ]
+        ]
+    },
+    {
+        "id": "gauge_temp",
+        "type": "ui_gauge",
+        "z": "78e69b2627a400f1",
+        "group": "grp_leitura",
+        "order": 2,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 50,
+        "x": 800,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "chart_temp",
+        "type": "ui_chart",
+        "z": "78e69b2627a400f1",
+        "group": "grp_hist",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Historico Temperatura",
+        "chartType": "line",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": "100",
+        "removeOlderUnit": "3600",
+        "outputs": 1,
+        "x": 820,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "json_analise",
+        "type": "json",
+        "z": "78e69b2627a400f1",
+        "property": "payload",
+        "action": "obj",
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "fn_analise"
+            ]
+        ]
+    },
+    {
+        "id": "fn_analise",
+        "type": "function",
+        "z": "78e69b2627a400f1",
+        "name": "Separar Analise",
+        "func": "return [\n {payload:Number(msg.payload.evaporacao)},\n {payload:String(msg.payload.nivel_evaporacao)},\n {payload:String(msg.payload.irrigacao)},\n {payload:Number(msg.payload.evaporacao)}\n];",
+        "outputs": 4,
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "gauge_evap"
+            ],
+            [
+                "txt_nivel"
+            ],
+            [
+                "txt_irrigacao"
+            ],
+            [
+                "chart_evap"
+            ]
+        ]
+    },
+    {
+        "id": "gauge_evap",
+        "type": "ui_gauge",
+        "z": "78e69b2627a400f1",
+        "group": "grp_leitura",
+        "order": 3,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Evaporacao",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "x": 840,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "txt_nivel",
+        "type": "ui_text",
+        "z": "78e69b2627a400f1",
+        "group": "grp_diag",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Nivel de Evaporacao",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 850,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "txt_irrigacao",
+        "type": "ui_text",
+        "z": "78e69b2627a400f1",
+        "group": "grp_diag",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Necessidade de Irrigacao",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 870,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "chart_evap",
+        "type": "ui_chart",
+        "z": "78e69b2627a400f1",
+        "group": "grp_hist",
+        "order": 3,
+        "width": 12,
+        "height": 4,
+        "label": "Historico Evaporacao",
+        "chartType": "line",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "100",
+        "removeOlderUnit": "3600",
+        "outputs": 1,
+        "x": 850,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47d6d1a8602c90ce",
+        "type": "mqtt in",
+        "z": "78e69b2627a400f1",
+        "name": "solo",
+        "topic": "agricola/solo",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "acdbf707cee89590",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "json_solo",
+                "8e94798ffa2402bd"
+            ]
+        ]
+    },
+    {
+        "id": "f49077ea828ee6fb",
+        "type": "mqtt in",
+        "z": "78e69b2627a400f1",
+        "name": "clima",
+        "topic": "agricola/clima",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "acdbf707cee89590",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "json_clima",
+                "8e94798ffa2402bd"
+            ]
+        ]
+    },
+    {
+        "id": "de06ea9dccbf0aa7",
+        "type": "mqtt in",
+        "z": "78e69b2627a400f1",
+        "name": "clima",
+        "topic": "agricola/analise",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "acdbf707cee89590",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "json_analise",
+                "8e94798ffa2402bd"
+            ]
+        ]
+    },
+    {
+        "id": "8e94798ffa2402bd",
+        "type": "debug",
+        "z": "78e69b2627a400f1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d08716f7f0ac9fec",
+        "type": "debug",
+        "z": "78e69b2627a400f1",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2c86be85f4531d24",
+        "type": "debug",
+        "z": "78e69b2627a400f1",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "grp_leitura",
+        "type": "ui_group",
+        "name": "Leitura Atual",
+        "tab": "tab_agricola",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "grp_hist",
+        "type": "ui_group",
+        "name": "Historico",
+        "tab": "tab_agricola",
+        "order": 3,
+        "disp": true,
+        "width": 12
+    },
+    {
+        "id": "grp_diag",
+        "type": "ui_group",
+        "name": "Diagnostico",
+        "tab": "tab_agricola",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "acdbf707cee89590",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "3ce2272cc2d5473895749ecf5cdd0ff5.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "tab_agricola",
+        "type": "ui_tab",
+        "name": "Monitoramento Agricola",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "e31ef263cbb8381d",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
