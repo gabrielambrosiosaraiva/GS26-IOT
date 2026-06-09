@@ -1,12 +1,20 @@
 Sistema Inteligente de Monitoramento de Umidade e Evaporação do Solo
+
+
 Integrantes
-Gabriel Ambrosio Saraiva
-(Adicionar demais integrantes)
-Descrição do Projeto
+
+
+Gabriel Ambrósio Saraiva		RM 566552 (Turma: 2TDSPV)
+João Victor Vendrameto  		RM 563665 (Turma: 2TDSPV)
+Nicolas de Oliveira Jacob 		RM 564205 (Turma: 2TDSPX)
+Vinicius Romaguera Cardozo 	    RM 562308 (Turma: 2TDSPX)
+Yuri Fuzinatto Garzoli Barreto  RM 561450 (Turma: 2TDSPX)
 
 
 link projeto wokwi : https://wokwi.com/projects/466323026260079617
 link youtube: https://github.com/gabrielambrosiosaraiva/GS26-IOT
+
+Descrição do Projeto
 
 
 Este projeto foi desenvolvido para a disciplina Disruptive Architectures: IoT, IOB & Generative AI, com o objetivo de demonstrar a aplicação de Internet das Coisas (IoT) no monitoramento agrícola.
