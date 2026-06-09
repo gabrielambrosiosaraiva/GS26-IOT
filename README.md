@@ -33,7 +33,11 @@ Calcular um índice de evaporação;
 Informar a necessidade de irrigação;
 Disponibilizar os dados localmente em um LCD;
 Disponibilizar os dados remotamente através de dashboard.
+
+
 Arquitetura da Solução
+
+
 Potenciômetro (Solo)
           │
           │
@@ -56,8 +60,13 @@ DHT22 Topo│
           │
           ▼
      Dashboard
+
+
 Tecnologias Utilizadas
+
+
 Hardware (Simulado no Wokwi)
+
 ESP32 DevKit V4
 2 Sensores DHT22
 Potenciômetro (simulação da umidade do solo)
